@@ -1,0 +1,194 @@
+1.	Perform GIT operations on local remote repositories. (Create Repository, add files. Commit changes, pushing objects to remote repository)
+
+mkdir filename
+
+cd filename
+
+git init
+
+nano filename2.txt
+
+git status
+
+git add filename2.txt
+
+git commit -m "Initial commit Added by me"
+
+git remote add origin <GitHub link>
+
+git push -u origin master
+
+
+2.	Perform GIT operations on local remote repositories.(Create Repository, add files, create branches, switch between branches)
+
+
+mkdir filename
+
+cd filename
+
+git init
+
+nano filename2.txt
+
+git add .
+
+git commit -m "This is first commit"
+
+git branch branch1
+
+git branch
+
+git checkout branch1
+
+git branch
+
+git switch master
+
+git branch
+
+
+
+3.	Perform  GIT operations on Remote repositories (Create Repository, add files. Commit changes, cloning, pulling and pushing  objects)
+
+
+git clone <GitHub link>
+
+mkdir filename
+
+cd filename
+
+git init
+
+nano filename2.txt
+
+git add .
+
+git commit -m "Initial commit"
+
+git push -u origin main
+
+git pull origin main
+
+
+
+
+
+
+
+
+4.	Build the Java jobs using in Jenkins
+Build the Java Job using Jenkins
+Step 1:
+Create a Java file → sample.java
+public class sample {
+    public static void main(String[] args) {
+        System.out.println("Hello Java in Jenkins!");
+    }
+}
+Step 2:
+Open Jenkins → http://localhost:8080/
+Step 3:
+New Item → Freestyle Project → give name: JavaJob
+Step 4:
+Go to Build → Add build step → Execute Windows batch command
+Type:
+javac sample.java
+java sample
+Step 5:
+Click Save → Build Now
+Step 6:
+Check Console Output → you should see:
+Hello Java in Jenkins!
+
+
+
+
+
+5.	Build the python jobs using in Jenkins
+Step 1:
+Create Python file → sample.py
+print("Hello Python in Jenkins!")
+Step 2:
+New Item → Freestyle Project → give name: PythonJob
+Step 3:
+Go to Build → Add build step → Execute Windows batch command
+Type:
+python sample.py
+Step 4:
+Click Save → Build Now
+Step 5:
+Check Console Output → you should see:
+Hello Python in Jenkins!
+
+
+
+6.	Crete a simple pipeline script using Jenkins
+
+Step 1:
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ganeshghutukade-04/gitdemo.git'
+            }
+        }
+
+        stage('Build Java') {
+            steps {
+                script {
+                    if (fileExists('sample.java')) {
+                        bat 'javac sample.java'
+                        bat 'java sample'
+                    } else {
+                        echo 'No Java file found.'
+                    }
+                }
+            }
+        }
+
+        stage('Run Python') {
+            steps {
+                script {
+                    if (fileExists('sample.py')) {
+                        bat 'python sample.py'
+                    } else {
+                        echo 'No Python file found.'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check errors above.'
+        }
+    }
+}
+
+Step 3:
+Click Save → Build Now
+Step 4:
+Check Console Output → output from both Java and Python programs will appear (if files exist).
+
+
+
+7. docker
+
+
+docker version
+docker info
+docker images
+docker image ls
+docker ps
+docker ps -a
+docker pull ubuntu
+docker inspect ubuntu
+docker rmi ubuntu
+
+
